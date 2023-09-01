@@ -1,0 +1,4 @@
+name: TNTTag
+version: '${project.version}'
+main: com.tnttag.tnttag.TNTTag
+api-version: '1.20'
