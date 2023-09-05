@@ -21,7 +21,7 @@ public class Arena {
     private TNTTag main;
     private Game game;
 private Countdown countdown;
-    public Arena(TNTTag main,int id, Location spawn) {
+    public Arena(TNTTag main, int id, Location spawn) {
         this.id = id;
         this.spawn = spawn;
         this.main = main;

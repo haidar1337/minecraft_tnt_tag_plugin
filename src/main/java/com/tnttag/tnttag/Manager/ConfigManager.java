@@ -1,8 +1,10 @@
 package com.tnttag.tnttag.Manager;
 
 import com.tnttag.tnttag.TNTTag;
+import com.tnttag.tnttag.Utility.Util;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Utility;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -39,12 +41,12 @@ public class ConfigManager {
 
     public static void setCountdown(int seconds) throws IOException {
         ConfigManager.config.set("countdown", seconds);
-        saveConfig();
+        Util.saveConfig(ConfigManager.config, ConfigManager.file);
     }
 
     public static void setRequiredPlayers(int playersCount) throws IOException {
         ConfigManager.config.set("required-players", playersCount);
-        saveConfig();
+        Util.saveConfig(ConfigManager.config, ConfigManager.file);
 
     }
 
@@ -56,16 +58,8 @@ public class ConfigManager {
         ConfigManager.config.set("lobby-spawn.z", location.getZ());
         ConfigManager.config.set("lobby-spawn.yaw", location.getYaw());
         ConfigManager.config.set("lobby-spawn.pitch", location.getPitch());
-        saveConfig();
+        Util.saveConfig(ConfigManager.config, ConfigManager.file);
 
 }
 
-    private static void saveConfig() {
-        try {
-            ConfigManager.config.save(ConfigManager.file);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-    }
 }

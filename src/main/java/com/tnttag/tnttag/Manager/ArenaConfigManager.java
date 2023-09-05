@@ -1,6 +1,10 @@
 package com.tnttag.tnttag.Manager;
 
+import com.tnttag.tnttag.Instance.Arena;
 import com.tnttag.tnttag.TNTTag;
+import com.tnttag.tnttag.Utility.Util;
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -32,7 +36,6 @@ public class ArenaConfigManager {
 
         arenaConfig = YamlConfiguration.loadConfiguration(file);
 
-        System.out.println(arenaConfig.getConfigurationSection("arenas."));
 
         if (arenaConfig.getConfigurationSection("arenas.") == null) {
             arenaConfig.createSection("arenas");
@@ -49,7 +52,7 @@ public class ArenaConfigManager {
         return arenaConfig;
     }
 
-    public static void createArena(int id, String world, double x, double y, double z, float yaw, float pitch) {
+    public static void createArena(int id, String world, double x, double y, double z, float yaw, float pitch) throws IOException {
         arenaConfig.createSection("arenas." + id);
         arenaConfig.set("arenas." + id, id);
         arenaConfig.set("arenas." + id + ".world", world);
@@ -59,9 +62,18 @@ public class ArenaConfigManager {
         arenaConfig.set("arenas." + id + ".yaw", yaw);
         arenaConfig.set("arenas." + id + ".pitch", pitch);
 
+        Util.saveConfig(ArenaConfigManager.arenaConfig, ArenaConfigManager.file);
+
+
     }
 
-    public static void deleteArena(int id) {
+    public static void deleteArena(int id) throws IOException {
         arenaConfig.set("arenas." + id, null);
+        Util.saveConfig(ArenaConfigManager.arenaConfig, ArenaConfigManager.file);
     }
+
+    public static Location getArenaSpawn(String arn) {
+        return new Location(Bukkit.getWorld(arenaConfig.getString("arenas." + arn + ".world")), arenaConfig.getDouble("arenas." + arn + ".x"), arenaConfig.getDouble("arenas." + arn + ".y"), arenaConfig.getDouble("arenas." + arn + ".z"), ((float) arenaConfig.getDouble("arenas." + arn + ".yaw")), ((float) arenaConfig.getDouble("arenas." + arn + ".pitch")));
+    }
+
 }

@@ -5,6 +5,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import java.io.IOException;
+
 public class ArenaCommand extends Command{
 
 
@@ -37,7 +39,11 @@ public class ArenaCommand extends Command{
                     player.sendMessage("Invalid id");
                     return;
                 }
-                ArenaConfigManager.createArena(Integer.parseInt(args[1]), Bukkit.getWorld(player.getUniqueId()).getName(), player.getX(), player.getY(), player.getZ(), player.getYaw(), player.getPitch());
+                try {
+                    ArenaConfigManager.createArena(Integer.parseInt(args[1]), Bukkit.getWorld(player.getUniqueId()).getName(), player.getX(), player.getY(), player.getZ(), player.getYaw(), player.getPitch());
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
                 player.sendMessage("Succesfully created arena with " + args[1]);
             } else if (args[0].equalsIgnoreCase("delete")) {
 

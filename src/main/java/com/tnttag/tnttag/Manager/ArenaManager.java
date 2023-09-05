@@ -20,9 +20,7 @@ public class ArenaManager {
 
         for (String arn : config.getConfigurationSection("arenas.").getKeys(false)) {
             arenas.add(new Arena(main,
-                    Integer.parseInt(arn), new Location(
-                   Bukkit.getWorld(config.getString("arenas." + arn + "world")), config.getDouble("arenas." + arn + ".x"), config.getDouble("arenas." + arn + ".y"), config.getDouble("arenas." + arn + ".z"), (float) config.getDouble("arenas." + arn + ".yaw"), (float) config.getDouble("arenas." + arn + ".pitch"))
-            ));
+                    Integer.parseInt(arn), ArenaConfigManager.getArenaSpawn(arn)));
         }
     }
 
