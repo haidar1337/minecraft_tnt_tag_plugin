@@ -1,6 +1,6 @@
 package com.tnttag.tnttag.Manager;
 
-import com.tnttag.tnttag.Arena;
+import com.tnttag.tnttag.Instance.Arena;
 import com.tnttag.tnttag.TNTTag;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;

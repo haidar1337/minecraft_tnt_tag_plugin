@@ -1,6 +1,7 @@
 package com.tnttag.tnttag;
 
 import com.tnttag.tnttag.Manager.ArenaConfigManager;
+import com.tnttag.tnttag.Manager.ArenaManager;
 import com.tnttag.tnttag.Manager.ConfigManager;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -10,12 +11,14 @@ import java.io.IOException;
 
 public final class TNTTag extends JavaPlugin {
 
+    private ArenaManager arenaManager;
+
     @Override
     public void onEnable() {
         // Plugin startup logic
         ConfigManager.setupConfig(this);
         ArenaConfigManager.setupArenaConfig(this);
-        ArenaConfigManager.createArena(0, "world", 123.0, 12.0, 150.945, 2.4f, 2.5f);
+        arenaManager = new ArenaManager(this);
 
         try {
             ConfigManager.setCountdown(45);

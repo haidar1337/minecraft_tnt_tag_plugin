@@ -1,7 +1,8 @@
-package com.tnttag.tnttag;
+package com.tnttag.tnttag.Instance;
 
+import com.tnttag.tnttag.GameState;
 import com.tnttag.tnttag.Manager.ConfigManager;
-import com.tnttag.tnttag.Manager.Game;
+import com.tnttag.tnttag.TNTTag;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;

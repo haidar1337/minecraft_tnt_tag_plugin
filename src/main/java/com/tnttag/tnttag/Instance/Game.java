@@ -1,6 +1,5 @@
-package com.tnttag.tnttag.Manager;
+package com.tnttag.tnttag.Instance;
 
-import com.tnttag.tnttag.Arena;
 import com.tnttag.tnttag.GameState;
 import org.bukkit.ChatColor;
 
