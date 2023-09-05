@@ -15,6 +15,7 @@ public final class TNTTag extends JavaPlugin {
         // Plugin startup logic
         ConfigManager.setupConfig(this);
         ArenaConfigManager.setupArenaConfig(this);
+        ArenaConfigManager.createArena(0, "world", 123.0, 12.0, 150.945, 2.4f, 2.5f);
 
         try {
             ConfigManager.setCountdown(45);

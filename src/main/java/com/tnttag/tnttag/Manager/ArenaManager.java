@@ -16,12 +16,12 @@ public class ArenaManager {
 
     public ArenaManager(TNTTag main) {
 
-        FileConfiguration config = main.getConfig();
+        FileConfiguration config = ArenaConfigManager.getArenaConfig();
 
         for (String arn : config.getConfigurationSection("arenas.").getKeys(false)) {
-            arenas.add(new Arena(
+            arenas.add(new Arena(main,
                     Integer.parseInt(arn), new Location(
-                   Bukkit.getWorld("world"), config.getDouble("arenas." + arn + ".x"), config.getDouble("arenas." + arn + ".y"), config.getDouble("arenas." + arn + ".z"), (float) config.getDouble("arenas." + arn + ".yaw"), (float) config.getDouble("arenas." + arn + ".pitch"))
+                   Bukkit.getWorld(config.getString("arenas." + arn + "world")), config.getDouble("arenas." + arn + ".x"), config.getDouble("arenas." + arn + ".y"), config.getDouble("arenas." + arn + ".z"), (float) config.getDouble("arenas." + arn + ".yaw"), (float) config.getDouble("arenas." + arn + ".pitch"))
             ));
         }
     }
@@ -46,5 +46,6 @@ public class ArenaManager {
         return null;
 
     }
+
 
 }
