@@ -35,6 +35,10 @@ public class ArenaManager {
 
     }
 
+    public List<Arena> getArenas() {
+        return arenas;
+    }
+
     public Arena getArena(int id) {
         for (Arena arena : this.arenas) {
             if (arena.getId() == id) {

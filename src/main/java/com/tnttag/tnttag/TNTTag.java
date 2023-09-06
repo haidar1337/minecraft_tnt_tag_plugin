@@ -1,5 +1,6 @@
 package com.tnttag.tnttag;
 
+import com.tnttag.tnttag.Commands.ArenaCommand;
 import com.tnttag.tnttag.Manager.ArenaConfigManager;
 import com.tnttag.tnttag.Manager.ArenaManager;
 import com.tnttag.tnttag.Manager.ConfigManager;
@@ -19,6 +20,7 @@ public final class TNTTag extends JavaPlugin {
         ConfigManager.setupConfig(this);
         ArenaConfigManager.setupArenaConfig(this);
         arenaManager = new ArenaManager(this);
+        new ArenaCommand(this);
 
         try {
             ConfigManager.setCountdown(45);
@@ -34,5 +36,9 @@ public final class TNTTag extends JavaPlugin {
     @Override
     public void onDisable() {
         // Plugin shutdown logic
+    }
+
+    public ArenaManager getArenaManager() {
+        return arenaManager;
     }
 }
