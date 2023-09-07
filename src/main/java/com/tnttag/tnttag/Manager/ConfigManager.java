@@ -35,6 +35,15 @@ public class ConfigManager {
 
     }
 
+    public static int getExplosionCountdown() {
+        return ConfigManager.config.getInt("explosion-countdown");
+    }
+
+
+    public static void setExplosionCountdown(int seconds) throws IOException {
+        ConfigManager.config.set("explosion-countdown", seconds);
+        Util.saveConfig(ConfigManager.config, file);
+    }
     public static Location getSpawnLocation() {
         return new Location(Bukkit.getWorld("world"), ConfigManager.config.getDouble("lobby-spawn.x"), ConfigManager.config.getDouble("lobby-spawn.y"), ConfigManager.config.getDouble("lobby-spawn.z"), (float) ConfigManager.config.getDouble("lobby-spawn.yaw"), (float) ConfigManager.config.getDouble("lobby-spawn.pitch"));
     }

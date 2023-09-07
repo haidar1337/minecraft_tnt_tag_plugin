@@ -1,6 +1,5 @@
 package com.tnttag.tnttag.Utility;
 
-import com.tnttag.tnttag.Manager.ConfigManager;
 import org.bukkit.configuration.file.FileConfiguration;
 
 import java.io.File;
@@ -15,15 +14,15 @@ public class Util {
         config.save(file);
     }
 
-    public static int parseId(String id) {
-        int newId;
+    public static int parseInt(String id) {
+        int num;
 
         try {
-             newId = Integer.parseInt(id);
+             num = Integer.parseInt(id);
         } catch (Exception e) {
             return -1;
         }
 
-        return newId;
+        return num;
     }
 }

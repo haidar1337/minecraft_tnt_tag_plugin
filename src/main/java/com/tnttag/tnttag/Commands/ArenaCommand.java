@@ -40,7 +40,7 @@ public class ArenaCommand extends Command{
 
         if (args.length != 0) {
             if (args.length == 2) {
-                this.id = Util.parseId(args[1]);
+                this.id = Util.parseInt(args[1]);
             }
             if (args[0].equalsIgnoreCase("create") && args.length == 2) {
 

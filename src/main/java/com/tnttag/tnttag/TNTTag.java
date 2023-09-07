@@ -23,6 +23,7 @@ public final class TNTTag extends JavaPlugin {
         new ArenaCommand(this);
 
         try {
+            // implement commands for those
             ConfigManager.setCountdown(45);
             ConfigManager.setRequiredPlayers(2);
             ConfigManager.setLobbySpawn(new Location(Bukkit.getWorld("world"), 4, 5, 12, 155.3f, 123.2f));

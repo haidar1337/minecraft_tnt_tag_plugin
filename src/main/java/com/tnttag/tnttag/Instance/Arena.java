@@ -29,7 +29,7 @@ private Countdown countdown;
         this.state = GameState.RECRUITING;
         this.players = new ArrayList<>();
         this.countdown = new Countdown(main, this);
-        this.game = new Game(this);
+        this.game = new Game(this, main);
     }
 
 
@@ -41,7 +41,7 @@ private Countdown countdown;
         state = GameState.RECRUITING;
         countdown.cancel();
         countdown = new Countdown(main, this);
-        game = new Game(this);
+        game = new Game(this, main);
     }
 
     public void addPlayer(Player player) {

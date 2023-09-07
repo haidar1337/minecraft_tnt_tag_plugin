@@ -7,4 +7,12 @@ import org.bukkit.inventory.EquipmentSlot;
 public class PlayerHitListener implements Listener {
 
     // Do game logic here
+
+    public void onPlayerHit(PlayerInteractEvent e) {
+
+        if (e.getAction().isRightClick()) return;
+
+
+
+    }
 }
