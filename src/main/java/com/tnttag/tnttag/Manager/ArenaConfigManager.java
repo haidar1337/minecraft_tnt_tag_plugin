@@ -52,7 +52,14 @@ public class ArenaConfigManager {
         return arenaConfig;
     }
 
-    public static void createArena(int id, String world, double x, double y, double z, float yaw, float pitch) throws IOException {
+    public static void createArena(Arena arena) throws IOException {
+        int id = arena.getId();
+        String world = arena.getWorld().getName();
+        double x = arena.getSpawn().getX();
+        double y = arena.getSpawn().getY();
+        double z = arena.getSpawn().getZ();
+        float yaw = arena.getSpawn().getYaw();
+        float pitch = arena.getSpawn().getPitch();
         arenaConfig.createSection("arenas." + id);
         arenaConfig.set("arenas." + id, id);
         arenaConfig.set("arenas." + id + ".world", world);
@@ -65,6 +72,10 @@ public class ArenaConfigManager {
         Util.saveConfig(ArenaConfigManager.arenaConfig, ArenaConfigManager.file);
 
 
+    }
+
+    public static void getArena(String id) {
+        ArenaConfigManager.arenaConfig.getConfigurationSection("arenas." + id);
     }
 
     public static void deleteArena(int id) throws IOException {

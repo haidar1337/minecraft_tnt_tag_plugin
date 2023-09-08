@@ -5,6 +5,7 @@ import com.tnttag.tnttag.Manager.ConfigManager;
 import com.tnttag.tnttag.TNTTag;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.World;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
@@ -82,6 +83,10 @@ private Countdown countdown;
         for (UUID uuid : players) {
             Bukkit.getPlayer(uuid).sendMessage(message);
         }
+    }
+
+    public World getWorld() {
+        return spawn.getWorld();
     }
 
     public void sendTitle(String title, String subtitle) {

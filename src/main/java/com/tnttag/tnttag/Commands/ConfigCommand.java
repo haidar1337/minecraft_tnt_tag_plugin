@@ -36,23 +36,26 @@ public class ConfigCommand extends Command{
             }
 
             if (args[0].equalsIgnoreCase("required-players") && args.length == 2) {
-                if (number == -1) return;
+                if (number == -1 || number <= 1) return;
                 try {
                     ConfigManager.setRequiredPlayers(number);
+                    player.sendMessage("Required players set to " + number);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
             } else if (args[0].equalsIgnoreCase("explosion-countdown") && args.length == 2) {
-                if (number == -1) return;
+                if (number == -1 || number <= 15) return;
                 try {
                     ConfigManager.setExplosionCountdown(number);
+                    player.sendMessage("Explosion countdown set to " + number);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
             } else if (args[0].equalsIgnoreCase("countdown") && args.length == 2) {
-                if (number == -1) return;
+                if (number == -1 || number < 15) return;
                 try {
                     ConfigManager.setCountdown(number);
+                    player.sendMessage("Countdown set to " + number);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
@@ -60,6 +63,7 @@ public class ConfigCommand extends Command{
                 Location location = player.getLocation();
                 try {
                     ConfigManager.setLobbySpawn(location);
+                    player.sendMessage("Lobby spawn set to current location");
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }

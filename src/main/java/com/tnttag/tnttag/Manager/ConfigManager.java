@@ -68,7 +68,6 @@ public class ConfigManager {
         ConfigManager.config.set("lobby-spawn.yaw", location.getYaw());
         ConfigManager.config.set("lobby-spawn.pitch", location.getPitch());
         Util.saveConfig(ConfigManager.config, ConfigManager.file);
-
 }
 
 }

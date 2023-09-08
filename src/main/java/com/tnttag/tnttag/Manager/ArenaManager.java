@@ -12,7 +12,7 @@ import java.util.List;
 
 public class ArenaManager {
 
-    private List<Arena> arenas = new ArrayList<>();
+    private static List<Arena> arenas = new ArrayList<>();
 
     public ArenaManager(TNTTag main) {
 
@@ -24,9 +24,17 @@ public class ArenaManager {
         }
     }
 
+    public static void addArena(Arena arena) {
+        ArenaManager.arenas.add(arena);
+    }
+
+    public static void deleteArena(Arena arena) {
+        ArenaManager.arenas.remove(arena);
+    }
+
     public Arena getArena(Player player) {
 
-        for (Arena arena : this.arenas) {
+        for (Arena arena : arenas) {
             if (arena.getPlayers().contains(player.getUniqueId())) {
                 return arena;
             }

@@ -2,9 +2,11 @@ package com.tnttag.tnttag.Commands;
 
 import com.tnttag.tnttag.Instance.Arena;
 import com.tnttag.tnttag.Manager.ArenaConfigManager;
+import com.tnttag.tnttag.Manager.ArenaManager;
 import com.tnttag.tnttag.TNTTag;
 import com.tnttag.tnttag.Utility.Util;
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
@@ -44,25 +46,27 @@ public class ArenaCommand extends Command{
             }
             if (args[0].equalsIgnoreCase("create") && args.length == 2) {
 
-                if (id == -1) return;
+                if (id == -1 || id <= 0) return;
 
                 if (main.getArenaManager().getArena(id) != null) {
                     player.sendMessage("There already exists an arena with id " + id);
                 }
 
                 try {
-                    ArenaConfigManager.createArena(id, Bukkit.getWorld(player.getLocation().getWorld().getName()).getName(), player.getLocation().getX(), player.getLocation().getY(), player.getLocation().getZ(), player.getLocation().getYaw(), player.getLocation().getPitch());
+                    Location spawn = new Location(Bukkit.getWorld(player.getLocation().getWorld().getName()), player.getLocation().getX(), player.getLocation().getY(), player.getLocation().getZ(), player.getLocation().getYaw(), player.getLocation().getPitch());
+                    Arena arena = new Arena(main, id, spawn);
+                    ArenaConfigManager.createArena(arena);
+                    ArenaManager.addArena(arena);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
                 player.sendMessage("Succesfully created arena with " + id);
             } else if (args[0].equalsIgnoreCase("delete") && args.length == 2) {
 
-
-
                     if (main.getArenaManager().getArena(id) != null) {
                         try {
                             ArenaConfigManager.deleteArena(id);
+                            ArenaManager.deleteArena(main.getArenaManager().getArena(id));
                             player.sendMessage("Successfully deleted arena");
                         } catch (IOException e) {
                             throw new RuntimeException(e);
